@@ -1,6 +1,7 @@
 package com.github.romankh3.debugpresentation;
 
 import java.time.LocalDate;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -8,25 +9,6 @@ import lombok.Data;
  */
 @Data
 public class Bee {
-
-    public Bee() {
-        dateOfBirth = LocalDate.now();
-    }
-
-    /**
-     * Date of birth.
-     */
-    private final LocalDate dateOfBirth;
-
-    /**
-     * Date of Death.
-     */
-    private LocalDate dateOfDeath;
-
-    /**
-     * True if bee alive, false otherwise.
-     */
-    private boolean alive;
 
     /**
      * Current nectar capacity
@@ -38,10 +20,20 @@ public class Bee {
      */
     private double maxNectarCapacity = 20.0;
 
-    public void collectHoney(HoneyPlant honeyPlant) {
-        double fetchCountPerSecond = 1.0;
-        while (maxNectarCapacity > nectarCapacity) {
-            nectarCapacity = nectarCapacity + honeyPlant.retrieveNectar(fetchCountPerSecond);
+    public void fetchNectar(HoneyPlant honeyPlant) {
+        double fetchCountPerTime = 1.0;
+        while (nectarCapacity < maxNectarCapacity) {
+            double retrievedNectar = honeyPlant.retrieveNectar(fetchCountPerTime);
+            if(retrievedNectar == 0) {
+                return;
+            }
+            nectarCapacity += retrievedNectar;
+        }
+    }
+
+    public void fetchNectar(List<HoneyPlant> honeyPlants) {
+        for (HoneyPlant honeyPlant : honeyPlants) {
+            fetchNectar(honeyPlant);
         }
     }
 

@@ -2,26 +2,34 @@ package com.github.romankh3.debugpresentation;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Main class for debug presentation.
  */
 public class Main {
 
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-
     public static void main(String[] args) {
-        HoneyPlant appleTree = new HoneyPlant(40.5);
-        HoneyPlant plumTree = new HoneyPlant(85);
+        // создаем медоносы: яблочное и сливовое деревья
+        HoneyPlant appleTree = new HoneyPlant(40);
+        HoneyPlant plumTree = new HoneyPlant(30.5);
 
+        // добавляем деревья в коллекцию
         List<HoneyPlant> honeyPlants = Arrays.asList(appleTree, plumTree);
 
-        BeeHive beeHive = new BeeHive(3);
+        // создаем улик с семью пчелами
+        BeeHive beeHive = new BeeHive(7);
 
-        beeHive.fetchNectar(honeyPlants);
+        // собираем нектар
+        beeHive.getBees().forEach(bee -> {
+            bee.fetchNectar(honeyPlants);
+        });
 
-        LOGGER.info(String.format("%s was produced by %d bees from %d honey plants",
+        // получить мёд из нектара пчел
+        beeHive.populateHoney();
+
+
+        // отобразим результат
+        System.out.println(String.format("%s was produced by %d bees from %d honey plants",
                 beeHive.getHoney(), beeHive.getBees().size(), honeyPlants.size()));
     }
 }

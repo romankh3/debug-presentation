@@ -21,21 +21,16 @@ public class BeeHive {
         this.bees = beeList;
     }
 
-    public void fetchNectar(List<HoneyPlant> honeyPlants) {
-        bees.forEach( bee -> {
-            for (HoneyPlant honeyPlant : honeyPlants) {
-                bee.collectHoney(honeyPlant);
-            }
-        });
-        populateHoney();
-    }
-
-    private void populateHoney() {
-        double sumDoubleValues = bees.stream().mapToDouble(Bee::giveNectar).sum();
-        honey = honey + sumDoubleValues * 0.5;
+    public void populateHoney() {
+        double nectarFromAllTheBees = bees.stream().mapToDouble(Bee::giveNectar).sum();
+        honey += createHoney(nectarFromAllTheBees);
         double honeyForQueen = 2;
         honey = honey - honeyForQueen;
         beeQueen.eatNectar(honeyForQueen);
+    }
+
+    private double createHoney(double nectar) {
+        return nectar * 0.5;
     }
 
     public double getHoney() {

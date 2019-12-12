@@ -15,14 +15,10 @@ public class HoneyPlant {
         if(nectar == 0) {
             return 0;
         }
-        nectarCapacity = nectarCapacity - nectar;
+        nectarCapacity -= nectar;
         if(nectarCapacity < 0) {
             throw new RuntimeException("there is not enough nectar in this flower");
         }
         return nectar;
-    }
-
-    public void populateNectar(double nectar) {
-        nectarCapacity = nectarCapacity + nectar;
     }
 }
