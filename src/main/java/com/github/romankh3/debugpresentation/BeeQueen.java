@@ -9,7 +9,6 @@ public class BeeQueen {
 
     public void eatNectar(double nectar) {
         eatenNectar += nectar;
-        System.out.println(String.format("the queen has successfully eaten %s nectar", nectar));
     }
 
     public double getEatenNectar() {
