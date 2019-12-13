@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         // создаем медоносы: яблочное и сливовое деревья
         HoneyPlant appleTree = new HoneyPlant(40);
-        HoneyPlant plumTree = new HoneyPlant(30.5);
+        HoneyPlant plumTree = new HoneyPlant(30);
 
         // добавляем деревья в коллекцию
         List<HoneyPlant> honeyPlants = Arrays.asList(appleTree, plumTree);
