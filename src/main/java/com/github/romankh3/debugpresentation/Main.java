@@ -29,7 +29,7 @@ public class Main {
 
 
         // отобразим результат
-        System.out.println(String.format("%s was produced by %d bees from %d honey plants",
+        System.out.println(String.format("%s honey was produced by %d bees from %d honey plants",
                 beeHive.getHoney(), beeHive.getBees().size(), honeyPlants.size()));
     }
 }
