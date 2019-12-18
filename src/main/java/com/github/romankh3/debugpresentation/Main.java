@@ -27,7 +27,6 @@ public class Main {
         // получить мёд из нектара пчел
         beeHive.populateHoney();
 
-
         // отобразим результат
         System.out.println(String.format("%s honey was produced by %d bees from %d honey plants",
                 beeHive.getHoney(), beeHive.getBees().size(), honeyPlants.size()));
