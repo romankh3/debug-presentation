@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class BeeHive {
 
-    private final List<Bee> bees;
-    private BeeQueen beeQueen = new BeeQueen();
+    private List<Bee> bees;
+    private BeeQueen beeQueen;
 
     private double honey;
 
@@ -19,10 +19,15 @@ public class BeeHive {
             beeList.add(new Bee());
         }
         this.bees = beeList;
+        beeQueen = new BeeQueen();
     }
 
     public void populateHoney() {
-        double nectarFromAllTheBees = bees.stream().mapToDouble(Bee::giveNectar).sum();
+        double nectarFromAllTheBees = 0;
+        for (Bee bee : getBees()) {
+            double nectar = bee.giveNectar();
+            nectarFromAllTheBees += nectar;
+        }
         honey += createHoney(nectarFromAllTheBees);
         double honeyForQueen = 2;
         honey = honey - honeyForQueen;

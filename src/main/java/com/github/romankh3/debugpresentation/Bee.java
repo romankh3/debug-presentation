@@ -3,10 +3,7 @@ package com.github.romankh3.debugpresentation;
 import java.util.List;
 import lombok.Data;
 
-/**
- * Class represents bee in programmatically way.
- */
-@Data
+
 public class Bee {
 
     /**

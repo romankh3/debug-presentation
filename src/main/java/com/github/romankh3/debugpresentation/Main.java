@@ -1,5 +1,6 @@
 package com.github.romankh3.debugpresentation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,21 +15,26 @@ public class Main {
         HoneyPlant plumTree = new HoneyPlant(30);
 
         // добавляем деревья в коллекцию
-        List<HoneyPlant> honeyPlants = Arrays.asList(appleTree, plumTree);
+        List<HoneyPlant> honeyPlants = new ArrayList<>();
+        honeyPlants.add(appleTree);
+        honeyPlants.add(plumTree);
 
-        // создаем улик с семью пчелами
+        // создаем улей с семью пчелами
         BeeHive beeHive = new BeeHive(7);
 
         // собираем нектар
-        beeHive.getBees().forEach(bee -> {
+        for (Bee bee : beeHive.getBees()) {
             bee.fetchNectar(honeyPlants);
-        });
+        }
 
         // получить мёд из нектара пчел
         beeHive.populateHoney();
 
         // отобразим результат
-        System.out.println(String.format("%s honey was produced by %d bees from %d honey plants",
-                beeHive.getHoney(), beeHive.getBees().size(), honeyPlants.size()));
+        System.out.println(
+                beeHive.getHoney() + " honey was produced by " +
+                        beeHive.getBees().size() +
+                        " bees from " + honeyPlants.size() + " honey plants"
+        );
     }
 }
