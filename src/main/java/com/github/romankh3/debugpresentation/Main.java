@@ -20,6 +20,7 @@ public class Main {
         honeyPlants.add(plumTree);
 
         // создаем улей с семью пчелами
+
         BeeHive beeHive = new BeeHive(7);
 
         // собираем нектар
